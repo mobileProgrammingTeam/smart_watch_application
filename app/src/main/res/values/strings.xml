@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">작업자 안전</string>
+    <string name="measurement_channel_name">생체신호 측정</string>
+    <string name="measurement_channel_description">작업자 생체신호를 지속적으로 측정합니다</string>
+</resources>

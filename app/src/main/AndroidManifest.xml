@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Wear OS 기기 표시 -->
+    <uses-feature android:name="android.hardware.type.watch" />
+
+    <!-- 생체 센서 권한 -->
+    <uses-permission android:name="android.permission.BODY_SENSORS" />
+
+    <!-- Foreground Service 권한 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_HEALTH" />
+
+    <!-- Wake Lock (백그라운드 측정 유지) -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@android:style/Theme.DeviceDefault">
+
+        <!-- 메인 액티비티 -->
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true"
+            android:taskAffinity="">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 생체신호 측정 Foreground Service -->
+        <service
+            android:name=".measurement.MeasurementService"
+            android:exported="false"
+            android:foregroundServiceType="health" />
+
+        <!-- Wearable Data Layer 리스너 (스마트폰→워치 데이터 수신) -->
+        <service
+            android:name=".communication.WearableDataListenerService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.wearable.DATA_CHANGED" />
+                <data
+                    android:host="*"
+                    android:pathPrefix="/worker/info"
+                    android:scheme="wear" />
+                <data
+                    android:host="*"
+                    android:pathPrefix="/config/measurement_interval"
+                    android:scheme="wear" />
+            </intent-filter>
+        </service>
+
+        <!-- Google Play Services Wearable 메타데이터 -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+    </application>
+</manifest>
