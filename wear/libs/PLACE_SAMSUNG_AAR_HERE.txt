@@ -1,0 +1,4 @@
+Download the official Samsung Health Sensor SDK from:
+https://developer.samsung.com/health/sensor/overview.html
+Extract the AAR and copy it here as samsung-health-sensor-api-1.4.1.aar
+The proprietary Samsung SDK is NOT bundled in this project.

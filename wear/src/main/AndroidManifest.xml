@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-feature android:name="android.hardware.type.watch" android:required="true" />
+    <uses-permission android:name="android.permission.BODY_SENSORS" />
+    <!-- Available only after separate background health permission approval. Not required for starter foreground session. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_HEALTH" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <application android:label="Worker Safety Watch" android:theme="@style/AppTheme" android:allowBackup="false">
+        <meta-data android:name="com.google.android.wearable.standalone" android:value="false" />
+        <activity android:name=".WatchActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <service android:name=".SensorService" android:exported="false" android:foregroundServiceType="health" />
+    </application>
+</manifest>

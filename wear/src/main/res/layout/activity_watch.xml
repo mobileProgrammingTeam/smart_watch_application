@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <!--
+      Center the entire content block instead of using a weighted full-height page.
+      On a 384px / 320dpi round emulator the diameter is approximately 192dp.
+      Keeping start + diagnostics + navigation compact avoids the circular edges.
+    -->
+    <LinearLayout
+        android:layout_width="156dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <!-- Start / interval selection -->
+        <LinearLayout
+            android:id="@+id/pageStart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:text="SAFE MONITORING"
+                android:textColor="#A8A23B"
+                android:textSize="9sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:layout_marginTop="2dp"
+                android:text="측정 준비"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="♥"
+                android:textColor="#FA1717"
+                android:textSize="23sp" />
+
+            <RadioGroup
+                android:id="@+id/groupInterval"
+                android:layout_width="wrap_content"
+                android:layout_height="26dp"
+                android:checkedButton="@+id/radio5"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radio5"
+                    android:layout_width="61dp"
+                    android:layout_height="26dp"
+                    android:buttonTint="#D6A21A"
+                    android:minHeight="0dp"
+                    android:minWidth="0dp"
+                    android:padding="0dp"
+                    android:singleLine="true"
+                    android:text="5분"
+                    android:textColor="#FFFFFF"
+                    android:textSize="10sp" />
+
+                <RadioButton
+                    android:id="@+id/radio10"
+                    android:layout_width="61dp"
+                    android:layout_height="26dp"
+                    android:buttonTint="#D6A21A"
+                    android:minHeight="0dp"
+                    android:minWidth="0dp"
+                    android:padding="0dp"
+                    android:singleLine="true"
+                    android:text="10분"
+                    android:textColor="#FFFFFF"
+                    android:textSize="10sp" />
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/btnStart"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:backgroundTint="#A77816"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:padding="0dp"
+                android:singleLine="true"
+                android:text="START"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- Heart rate: original Kotlin IDs are retained. -->
+        <LinearLayout
+            android:id="@+id/pageHeart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="○ 측정 중"
+                android:textColor="#61C15A"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/txtHeartRate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="--"
+                android:textColor="#FFFFFF"
+                android:textSize="40sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="BPM"
+                android:textColor="#A63239"
+                android:textSize="19sp" />
+
+            <Button
+                android:id="@+id/btnStop"
+                android:layout_width="85dp"
+                android:layout_height="30dp"
+                android:backgroundTint="#555555"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:padding="0dp"
+                android:singleLine="true"
+                android:text="측정 종료"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <!-- Skin temperature -->
+        <LinearLayout
+            android:id="@+id/pageSkin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="센서 상세"
+                android:textColor="#EEEEEE"
+                android:textSize="10sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="피부 온도"
+                android:textColor="#61BF54"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="♨"
+                android:textColor="#61BF54"
+                android:textSize="28sp" />
+
+            <TextView
+                android:id="@+id/txtTemperature"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:text="-- °C"
+                android:textColor="#FFFFFF"
+                android:textSize="25sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:singleLine="true"
+                android:text="손목 피부온도 · 체온 아님"
+                android:textColor="#65B96E"
+                android:textSize="8sp" />
+        </LinearLayout>
+
+        <!-- Diagnostics and two ordinary navigation buttons -->
+        <TextView
+            android:id="@+id/txtStatus"
+            android:layout_width="136dp"
+            android:layout_height="13dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:maxLines="1"
+            android:text="대기 중"
+            android:textColor="#B6B6B6"
+            android:textSize="8sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/navHeart"
+                android:layout_width="55dp"
+                android:layout_height="28dp"
+                android:backgroundTint="#525252"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:padding="0dp"
+                android:text="심박"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="9sp" />
+
+            <Button
+                android:id="@+id/navSkin"
+                android:layout_width="55dp"
+                android:layout_height="28dp"
+                android:backgroundTint="#525252"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:padding="0dp"
+                android:text="온도"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="9sp" />
+
+            <!-- The Kotlin Activity still expects this ID. It is not a visible tab. -->
+            <Button
+                android:id="@+id/navStatus"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                android:text="상태" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Event-only transmission view, covering the normal UI when made visible. -->
+    <LinearLayout
+        android:id="@+id/pageStatus"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="#000000"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/txtAlertIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:text="⚠"
+            android:textColor="#E0A719"
+            android:textSize="35sp" />
+
+        <TextView
+            android:id="@+id/txtAlertTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:text="송신 상태"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/txtTransmission"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxLines="3"
+            android:text="상태 확인 전"
+            android:textColor="#E5E5E5"
+            android:textSize="10sp" />
+
+        <Button
+            android:id="@+id/btnSend"
+            android:layout_width="94dp"
+            android:layout_height="30dp"
+            android:backgroundTint="#A77816"
+            android:minHeight="0dp"
+            android:minWidth="0dp"
+            android:padding="0dp"
+            android:text="지금 전송"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="10sp" />
+    </LinearLayout>
+</FrameLayout>
